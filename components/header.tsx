@@ -2,11 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+
+interface NavRoute {
+  name: string;
+  href: string;
+  current?: boolean;
+  badge?: string;
+}
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,24 +26,33 @@ export function Header() {
   }, []);
 
   // Defined routes placeholders as requested by user
-  const navRoutes = [
-    { name: "Home", href: "#", current: true },
-    { name: "Initiatives", href: "#initiatives" },
-    { name: "Startups", href: "#startups" },
-    { name: "E-Summit '26", href: "#summit", badge: "Live" },
-    { name: "Incubator", href: "#incubator" },
-    { name: "Minds", href: "#minds" },
-    { name: "Resources", href: "#resources" },
-    { name: "Contact", href: "#contact" },
+  const rawRoutes: NavRoute[] = [
+    { name: "Home", href: "/" },
+    { name: "Team", href: "/teams" },
+    { name: "Events", href: "/events" },
+    { name: "StartUp", href: "/startup" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Insights", href: "/insights" },
+    { name: "Contact", href: "/contact" },
   ];
+
+  const navRoutes: NavRoute[] = rawRoutes.map((route) => {
+    const isActive =
+      route.href === "/"
+        ? pathname === "/"
+        : pathname === route.href || pathname?.startsWith(route.href + "/");
+    return {
+      ...route,
+      current: isActive,
+    };
+  });
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#090807]/90 backdrop-blur-xl border-b border-orange-500/15 py-3 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-[#090807]/90 backdrop-blur-xl border-b border-orange-500/15 py-3 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]"
           : "bg-transparent border-b border-white/[0.05] py-5"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -52,7 +70,7 @@ export function Header() {
 
             <div className="flex flex-col">
               <span className="font-heading font-black text-xl tracking-tight text-white group-hover:text-orange-800 transition-colors">
-                E-CELL JMI 
+                E-CELL JMI
               </span>
               <span className="text-[10px] tracking-widest uppercase font-semibold text-orange-400/90 -mt-1 font-mono">
                 Entrepreneurship Hub
@@ -66,11 +84,10 @@ export function Header() {
               <Link
                 key={route.name}
                 href={route.href}
-                className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${
-                  route.current
+                className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${route.current
                     ? "text-white bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] border border-white/[0.08]"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-                }`}
+                  }`}
               >
                 {route.name}
                 {route.badge && (
@@ -120,11 +137,10 @@ export function Header() {
                   key={route.name}
                   href={route.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg flex items-center justify-between ${
-                    route.current
+                  className={`px-3 py-2 text-sm font-medium rounded-lg flex items-center justify-between ${route.current
                       ? "text-orange-400 bg-orange-500/10 font-semibold"
                       : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
-                  }`}
+                    }`}
                 >
                   <span>{route.name}</span>
                   {route.badge && (

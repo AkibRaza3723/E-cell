@@ -1,0 +1,2 @@
+- animation ke time pe 2 ,2s ka gap hona chahiye 
+- 

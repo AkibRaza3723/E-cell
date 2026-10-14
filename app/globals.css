@@ -159,6 +159,28 @@
   }
 }
 
+@keyframes lanyardSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1.4deg);
+  }
+  75% {
+    transform: rotate(-1.4deg);
+  }
+}
+
+.animate-lanyard-sway {
+  transform-origin: top center;
+  animation: lanyardSway 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-lanyard-sway:hover {
+  animation-play-state: paused;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -188,6 +210,71 @@
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* Floating Logo Levitation & Synchronized Shadow Keyframes */
+@keyframes floatLevitate {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(0.6deg);
+  }
+}
+
+@keyframes groundShadowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.72;
+    filter: blur(14px);
+  }
+  50% {
+    transform: scale(0.82);
+    opacity: 0.32;
+    filter: blur(20px);
+  }
+}
+
+@keyframes logoAuraPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+.animate-levitate {
+  animation: floatLevitate 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ground-shadow {
+  animation: groundShadowPulse 4.5s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+.animate-aura-pulse {
+  animation: logoAuraPulse 4.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Multi-layered Realistic PNG Shadow & Specular Glow */
+.ecell-logo-shadow {
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.75))
+          drop-shadow(0 35px 55px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 0 35px rgba(255, 100, 20, 0.3))
+          drop-shadow(-8px 10px 25px rgba(0, 200, 255, 0.22));
+  transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ecell-logo-shadow:hover {
+  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.85))
+          drop-shadow(0 45px 70px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 50px rgba(255, 120, 20, 0.45))
+          drop-shadow(-12px 12px 35px rgba(0, 220, 255, 0.35));
 }
 
 /* Glassmorphism & Orange Glow utilities */

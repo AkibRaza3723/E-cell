@@ -6,11 +6,7 @@ import { ArrowRight, ArrowUpRight, Sparkles, Zap, Shield, Rocket } from "lucide-
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden nexora-bg-gradient pt-28 sm:pt-32 pb-8 flex flex-col justify-between">
-      
-      {/* =========================================================================
-          BACKGROUND: PLANETARY ORBITAL RINGS & SOLAR GRADIENTS (MATCHING NEXORA REF)
-          ========================================================================= */}
+    <section className="relative min-h-[100svh] w-full overflow-hidden nexora-bg-gradient pt-24 sm:pt-28 pb-4 sm:pb-6 flex flex-col justify-between">
       
       {/* Outer Enormous Glowing Orbital Ring Arc */}
       <div className="pointer-events-none absolute -top-[280px] -left-[200px] sm:-left-[350px] w-[950px] h-[950px] sm:w-[1350px] sm:h-[1350px] rounded-full orbital-ring-outer opacity-75" />
@@ -47,15 +43,7 @@ export function Hero() {
 
       {/* Deep Ground Ambient Fade to integrate with footer/rest of page */}
       <div className="pointer-events-none absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#070606] via-[#070606]/70 to-transparent z-20" />
-
-      {/* =========================================================================
-          MAIN HERO CONTENT WRAPPER
-          ========================================================================= */}
       <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-between">
-        
-        {/* =========================================================================
-            TOP SECTION: EYEBROW, MASSIVE DUAL HEADLINE & RIGHT NARRATIVE
-            ========================================================================= */}
         <div className="relative pt-2 text-center select-none">
           {/* Tracked Eyebrow Tag */}
           <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange-100/90 font-mono drop-shadow-sm mb-2 sm:mb-3">
@@ -72,25 +60,33 @@ export function Hero() {
         </div>
 
      
-        <div className="relative flex-1 min-h-[380px] sm:min-h-[460px] lg:min-h-[500px] flex items-end justify-center my-4">
+        <div className="relative flex-1 min-h-[300px] sm:min-h-[360px] lg:min-h-[400px] flex items-center justify-center my-2 sm:my-3">
           
-          {/* THE PERSON WITH VR HEADSET (Using user's provided /images/image.png) */}
-          <div className="relative z-10 w-full max-w-[500px] sm:max-w-[650px] lg:max-w-[760px] aspect-[1.15/1] mx-auto flex items-end justify-center pointer-events-none -translate-y-10 sm:translate-y-0 transition-transform">
-            <Image
-              src="/images/image.png"
-              alt="E-cell student founder visionary wearing futuristic VR headset looking up into orange light"
-              width={1000}
-              height={850}
-              priority
-              className="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.65)]"
-            />
+          {/* FLOATING 3D E-CELL EMBLEM WITH SYNCHRONIZED SHADOW & ANIMATION */}
+          <div className="relative z-10 w-full max-w-[360px] sm:max-w-[460px] lg:max-w-[520px] mx-auto flex flex-col items-center justify-center">
+            {/* Ambient Dual-Tone Backlight Glow (Cyan Left / Orange Right) */}
+            <div className="pointer-events-none absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-cyan-500/20 via-orange-500/30 to-amber-500/25 rounded-full blur-3xl opacity-60 animate-aura-pulse" />
+
+            {/* Levitating Logo Image */}
+            <div className="relative z-10 w-full flex items-center justify-center animate-levitate">
+              <Image
+                src="/images/ecelllogo.png"
+                alt="E-Cell Emblem Logo"
+                width={1000}
+                height={520}
+                priority
+                className="w-full h-auto object-contain select-none ecell-logo-shadow transition-transform duration-500 hover:scale-[1.03]"
+              />
+            </div>
+
+            {/* Synchronized Ground Floating Shadow */}
+            <div className="relative w-[75%] sm:w-[68%] h-5 sm:h-8 -mt-2 sm:-mt-4 pointer-events-none flex items-center justify-center">
+              {/* Outer soft ambient diffusion shadow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/40 via-black/80 to-amber-950/50 rounded-[100%] blur-2xl animate-ground-shadow" />
+              {/* Core deep contact occlusion shadow */}
+              <div className="w-[82%] h-[72%] bg-black/90 rounded-[100%] blur-md animate-ground-shadow" />
+            </div>
           </div>
-
-
-          {/* =========================================================================
-              FLOATING CALLOUT POINTERS WITH CONNECTOR LINES (MATCHING REFERENCE EXACTLY)
-              ========================================================================= */}
-          
           {/* CALLOUT 1: TOP LEFT (PRE-SEED CAPITAL) */}
           <div className="hidden lg:flex absolute top-12 left-4 xl:left-8 z-30 flex-col items-start max-w-[220px]">
             <div className="flex items-start gap-2.5 mb-1.5">
