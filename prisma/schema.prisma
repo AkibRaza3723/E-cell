@@ -14,19 +14,29 @@ model admin{
   password String
 }
 
-model event{
-   id String @id @default(uuid())
-   title String
-   description String
-   date DateTime
-   venue String
-   registrationLink String
-   isOngoing Boolean @default(false)
-   isUpcoming Boolean @default(false)
-   isCompleted Boolean @default(false)
-   image String
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+model event {
+  id               String   @id @default(uuid())
+  title            String
+  shortTitle       String?
+  month            String
+  monthNumber      Int
+  year             Int
+  dayOfWeek        String
+  dayNumber        String
+  fullDate         String
+  time             String
+  venue            String
+  category         String
+  tags             String[]
+  description      String
+  image            String
+  registrationLink String
+  isUpcoming       Boolean  @default(true)
+  isOngoing        Boolean  @default(false)
+  isCompleted      Boolean  @default(false)
+  statusBadge      String   @default("Upcoming")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 model members{

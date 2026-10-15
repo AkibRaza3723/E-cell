@@ -131,9 +131,7 @@ export const metadata = {
 export default function Teams() {
   return (
     <div className="relative min-h-screen flex flex-col text-white selection:bg-orange-500 selection:text-white overflow-hidden">
-      
-      
-      
+
       {/* Master Vibrant Sunset Gradient (Exact reference match) */}
       <div className="fixed inset-0 pointer-events-none nexora-bg-gradient z-0" />
 

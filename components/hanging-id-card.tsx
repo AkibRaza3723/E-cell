@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { Download, Loader2 } from "lucide-react";
+import { toPng } from "html-to-image";
 
 interface HangingIdCardProps {
   member: {
@@ -19,9 +21,10 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isDownloading) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -39,6 +42,31 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
     setTilt({ x: 0, y: 0 });
   };
 
+  const handleDownload = async () => {
+    if (!cardRef.current || isDownloading) return;
+    setIsDownloading(true);
+    try {
+      // Brief pause to allow tilt/hover styling to normalize before capturing snapshot
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      const dataUrl = await toPng(cardRef.current, {
+        pixelRatio: 2,
+        backgroundColor: "transparent",
+        cacheBust: true,
+      });
+
+      const link = document.createElement("a");
+      link.download = `${member.slug || "ecell"}-id-card.png`;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Failed to download ID card:", error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   // Get initials for fallback placeholder
   const initials = member.name
     .trim()
@@ -49,7 +77,7 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
     .toUpperCase();
 
   return (
-    <div className="relative flex flex-col items-center pt-2 sm:pt-4 select-none">
+    <div className="relative flex flex-col items-center pt-2 sm:pt-4 select-none w-full">
       
       {/* LANYARD STRAP (Hanging down from top) */}
       <div className="relative flex flex-col items-center z-10 -mb-2">
@@ -76,10 +104,10 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
         className={`w-full max-w-[340px] sm:max-w-[365px] transition-transform duration-200 ease-out ${
-          !isHovered ? "animate-lanyard-sway" : ""
+          !isHovered && !isDownloading ? "animate-lanyard-sway" : ""
         }`}
         style={{
-          transform: isHovered
+          transform: isHovered && !isDownloading
             ? `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`
             : undefined,
           transformOrigin: "top center",
@@ -127,6 +155,7 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
                   <img
                     src={member.Avatar}
                     alt={member.name}
+                    crossOrigin="anonymous"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -167,6 +196,29 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
 
         </div>
       </div>
+
+      {/* Download Action Button */}
+      <div className="mt-6 flex justify-center">
+        <button
+          type="button"
+          onClick={handleDownload}
+          disabled={isDownloading}
+          className="group flex items-center gap-2.5 px-5 py-2.5 bg-[#3a1b0c]/80 hover:bg-[#522510] border border-amber-500/30 hover:border-amber-400/60 rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 shadow-[0_4px_20px_rgba(255,120,0,0.15)] disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+        >
+          {isDownloading ? (
+            <>
+              <Loader2 className="w-4 h-4 text-amber-400 animate-spin" />
+              <span className="text-xs font-bold font-mono text-white tracking-wider">Generating PNG...</span>
+            </>
+          ) : (
+            <>
+              <Download className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+              <span className="text-xs font-bold font-mono text-white tracking-wider">Download I-Card</span>
+            </>
+          )}
+        </button>
+      </div>
+
     </div>
   );
 }

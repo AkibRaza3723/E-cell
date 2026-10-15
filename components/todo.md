@@ -1,2 +1,3 @@
 - animation ke time pe 2 ,2s ka gap hona chahiye 
+- 404 page ko wahi pura design dena h 
 - 

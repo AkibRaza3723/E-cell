@@ -78,6 +78,8 @@ async function MemberProfile({ params }: PageProps) {
     year: "numeric",
   });
 
+
+
   return (
     <div className="relative min-h-screen flex flex-col text-white selection:bg-orange-500 selection:text-white overflow-hidden">
       
@@ -129,7 +131,7 @@ async function MemberProfile({ params }: PageProps) {
             {/* =================================================================
                 LEFT: Realistic Hanging I-Card with Lanyard & Sway Physics
                 ================================================================= */}
-            <div className="md:col-span-5 flex justify-center -translate-y-[4%]">
+            <div className="md:col-span-5 flex justify-center -translate-y-[7%]">
               <HangingIdCard member={member} />
             </div>
 

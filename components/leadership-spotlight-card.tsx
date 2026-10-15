@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import Link from "next/link";
-import { ArrowUpRight, ShieldCheck, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { LinkedInIcon, TwitterXIcon } from "@/components/icons";
 
 export interface LeaderData {
@@ -152,21 +151,8 @@ export function LeadershipSpotlightCard({ leader }: { leader: LeaderData }) {
                 </a>
               )}
             </div>
-
-            {/* Interactive Digital Credential Link */}
-            <Link
-              href={`/teams/${leader.slug}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] hover:bg-white/15 border border-white/15 hover:border-amber-400/40 text-xs font-mono uppercase tracking-wider text-white transition-all duration-200 group/link shadow-sm active:scale-95"
-            >
-              <span>Digital Credential</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-            </Link>
           </div>
         </div>
-
-        {/* =========================================================
-            RIGHT COLUMN: Architectural Minimalist Portrait Placeholder
-            ========================================================= */}
         <div className="w-full lg:w-2/5 flex items-center justify-center">
           <div className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-[4/5] rounded-[1.75rem] bg-gradient-to-b from-white/[0.08] via-black/40 to-black/80 border border-white/15 p-4 flex flex-col justify-between overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] group-hover:border-amber-400/30 transition-all duration-500">
             
