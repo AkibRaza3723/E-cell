@@ -66,9 +66,9 @@ export default function EventsPage() {
           
           {/* Hero Header Section */}
           <header className="text-center max-w-4xl mx-auto mb-14 sm:mb-18 select-none">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/15 text-orange-200 text-xs font-mono font-bold tracking-widest uppercase mb-4 shadow-sm">
-              <span>CALENDAR 2026 <br/> ENTREPRENEURSHIP GATHERINGS</span>
-            </div>
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange-100/90 font-mono drop-shadow-sm mb-3">
+              NEXT GEN ENTREPRENEURSHIP &bull; Events
+            </p>
 
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white tracking-tight leading-[0.94] font-heading drop-shadow-[0_4px_30px_rgba(0,0,0,0.45)]">
               EVENTS & SUMMITS

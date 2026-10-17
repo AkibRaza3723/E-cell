@@ -6,37 +6,6 @@ import { ArrowUpRight, Sparkles, Send } from "lucide-react";
 export function Footer() {
   const currentYear = 2026;
 
-  const footerNavigation = {
-    ecosystem: [
-      { name: "Incubation Wing", href: "#" },
-      { name: "Venture Studio", href: "#" },
-      { name: "Angel Syndicate", href: "#" },
-      { name: "Mentor Network", href: "#" },
-      { name: "Portfolio Startups", href: "#" },
-    ],
-    initiatives: [
-      { name: "Annual E-Summit", href: "#" },
-      { name: "HackStartup 2026", href: "#" },
-      { name: "Seed Grant Fund", href: "#" },
-      { name: "Women in Ventures", href: "#" },
-      { name: "Campus Pitch League", href: "#" },
-    ],
-    resources: [
-      { name: "Founder Playbook", href: "#" },
-      { name: "Pitch Deck Kit", href: "#" },
-      { name: "Cap Table Calculator", href: "#" },
-      { name: "Legal & IP Guidelines", href: "#" },
-      { name: "Grant Database", href: "#" },
-    ],
-    about: [
-      { name: "About E-Cell", href: "#" },
-      { name: "Executive Board", href: "#" },
-      { name: "Past Speakers", href: "#" },
-      { name: "Annual Report", href: "#" },
-      { name: "Contact & FAQs", href: "#" },
-    ],
-  };
-
   return (
     <footer className="relative bg-[#060505] text-zinc-300 border-t border-orange-500/15 overflow-hidden">
       {/* Top glowing gradient line */}
@@ -80,7 +49,7 @@ export function Footer() {
 
             <div className="flex items-center gap-2 pt-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                
                 Applications Open: Fall &apos;26 Cohort
               </span>
             </div>
@@ -124,85 +93,6 @@ export function Footer() {
             </div>
           </div>
 
-        </div>
-
-        {/* Middle Footer: Route Links Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono mb-4">
-              Ecosystem
-            </h4>
-            <ul className="space-y-2.5">
-              {footerNavigation.ecosystem.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-zinc-400 hover:text-white transition-colors flex items-center group"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0.5 text-orange-400 transition-all ml-1" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono mb-4">
-              Initiatives & Summit
-            </h4>
-            <ul className="space-y-2.5">
-              {footerNavigation.initiatives.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-zinc-400 hover:text-white transition-colors flex items-center group"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0.5 text-orange-400 transition-all ml-1" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono mb-4">
-              Resources & Playbooks
-            </h4>
-            <ul className="space-y-2.5">
-              {footerNavigation.resources.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-zinc-400 hover:text-white transition-colors flex items-center group"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0.5 text-orange-400 transition-all ml-1" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-orange-400 font-mono mb-4">
-              Organization
-            </h4>
-            <ul className="space-y-2.5">
-              {footerNavigation.about.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-zinc-400 hover:text-white transition-colors flex items-center group"
-                  >
-                    <span>{item.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0.5 text-orange-400 transition-all ml-1" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
 
