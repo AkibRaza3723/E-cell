@@ -26,6 +26,21 @@ export const metadata: Metadata = {
   title: "E-CELL | Igniting Future Founders & High-Growth Startups",
   description:
     "The premier Entrepreneurship Cell. Empowering visionary founders, incubating disruptive ideas, and bridging the gap between student innovation and world-scale ventures.",
+  openGraph: {
+    title: "E-CELL | Igniting Future Founders & High-Growth Startups",
+    description:
+      "The premier Entrepreneurship Cell. Empowering visionary founders, incubating disruptive ideas, and bridging the gap between student innovation and world-scale ventures.",
+    url: "https://ecelljmi.vercel.app",
+    siteName: "E-CELL JMI",
+    images: [
+      {
+        url: "https://in.pinterest.com/pin/404831454023846514/",
+        width: 800,
+        height: 600,
+        alt: "E-CELL JMI",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
