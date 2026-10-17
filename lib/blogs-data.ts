@@ -33,6 +33,7 @@ export const PLACEHOLDER_BLOGS: BlogItem[] = [
 ];
 
 export async function getBlogs(): Promise<BlogItem[]> {
+  /*
   try {
     const dbBlogs = await (prisma as any).blogs.findMany({
       take: 3,
@@ -55,6 +56,7 @@ export async function getBlogs(): Promise<BlogItem[]> {
   } catch (err) {
     console.warn("Database query for blogs fallback to placeholder:", err);
   }
+  */
 
   return PLACEHOLDER_BLOGS;
 }

@@ -137,6 +137,7 @@ export const PLACEHOLDER_EVENTS: EventItem[] = [
 
 // Helper to query database or return placeholders seamlessly
 export async function getEvents(): Promise<EventItem[]> {
+  /*
   try {
     const dbEvents = await (prisma.event as any).findMany();
 
@@ -196,6 +197,7 @@ export async function getEvents(): Promise<EventItem[]> {
   } catch (err) {
     console.warn("Database query for events fallback to placeholder:", err);
   }
+  */
 
   return PLACEHOLDER_EVENTS;
 }

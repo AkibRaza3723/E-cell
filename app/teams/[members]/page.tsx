@@ -33,8 +33,9 @@ async function MemberProfile({ params }: PageProps) {
   const { members } = await params;
   const rawSlug = decodeURIComponent(members).trim();
 
-  // Query member from database by slug or ID according to Prisma schema
-  let memberFromDb = null;
+  // Query member from database by slug or ID according to Prisma schema (commented out for deployment)
+  const memberFromDb = null;
+  /*
   try {
     memberFromDb = await prisma.members.findFirst({
       where: {
@@ -48,6 +49,7 @@ async function MemberProfile({ params }: PageProps) {
   } catch (error) {
     console.error("Database query failed:", error);
   }
+  */
 
   // Format display name from slug if database record hasn't been seeded yet
   const formattedName = rawSlug
