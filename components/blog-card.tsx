@@ -11,10 +11,11 @@ export function BlogCard({ blog }: BlogCardProps) {
       {/* Blog Image Container */}
       <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-900">
         <Image
-          src={blog.image}
+          src={blog.image?.trim() || "/images/ecelllogo.png"}
           alt={blog.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          unoptimized
           className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 

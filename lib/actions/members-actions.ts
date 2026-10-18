@@ -73,6 +73,7 @@ export async function createMember(data: {
 
     revalidatePath("/admin/members");
     revalidatePath("/teams");
+    revalidatePath(`/teams/${generatedSlug}`);
     return { success: true, member };
   } catch (error: any) {
     console.error("Failed to create member:", error);
@@ -87,12 +88,20 @@ export async function deleteMember(id: string) {
   await requireAdminSession();
 
   try {
+    const existing = await prisma.members.findUnique({
+      where: { id },
+      select: { slug: true },
+    });
+
     await prisma.members.delete({
       where: { id },
     });
 
     revalidatePath("/admin/members");
     revalidatePath("/teams");
+    if (existing?.slug) {
+      revalidatePath(`/teams/${existing.slug}`);
+    }
     return { success: true };
   } catch (error: any) {
     console.error("Failed to delete member:", error);

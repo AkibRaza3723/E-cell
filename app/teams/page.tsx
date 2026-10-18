@@ -7,117 +7,123 @@ import { QrCode, ArrowUpRight } from "lucide-react";
 
 const leadershipData: LeaderData[] = [
   {
-    id: "founder",
+    id: "mohammad-hamza",
     index: "01",
-    slug: "founder",
-    role: "Founder & President Emeritus",
-    roleCategory: "Founder",
-    name: "Founder Name",
+    slug: "mohammad-hamza",
+    role: "Chairperson",
+    roleCategory: "Leadership",
+    name: "Mohammad Hamza",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792339091/Hamza.png",
     batch: "Founder Council & Executive Board",
     faculty: "Faculty of Engineering & Technology",
     quote:
-      "Innovation isn't just about starting a company; it's about shifting the cultural mindset from seeking employment to creating disruptive opportunities that endure.",
-    focusAreas: ["Ecosystem Governance", "Venture Incubation", "DeepTech Acceleration"],
-    initials: "FN",
+      "Engineer turned entrepreneur who wants to see the day when Jamia students are building and scaling startups. I love marketing.",
+    focusAreas: ["Marketing", "Entrepreneurship", "Communication"],
+    initials: "MH",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:founder@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/hamzaindia",
+      twitter: "",
+      email: "heyhamza22@gmail.com",
     },
   },
   {
-    id: "co-founder",
+    id: "faiz-khan",
     index: "02",
-    slug: "co-founder",
-    role: "Co-Founder & Executive Director",
-    roleCategory: "Co-Founder",
-    name: "Co-Founder Name",
-    batch: "Strategic Advisory & Operations",
-    faculty: "Centre for Innovation & Entrepreneurship",
+    slug: "faiz-khan",
+    role: "Co-Chair",
+    roleCategory: "Leadership",
+    name: "Faiz Khan",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792340518/faiz.png",
+    batch: "Founder Council & Executive Board",
+    faculty: "Faculty of Engineering & Technology",
     quote:
-      "Ideas without relentless execution are merely dreams. We build the infrastructure, mentorship frameworks, and investor access so student founders can build the future.",
-    focusAreas: ["Strategic Growth", "Investor Syndicate", "Incubation Pipelines"],
-    initials: "CF",
+      "Never thought I would be here, but I manifested it—and here I am. Still, a long way to go.",
+    focusAreas: ["Leadership", "Dedication", "Overthinking"],
+    initials: "FK",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:cofounder@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/faiz-khan-4a16112b5",
+      twitter: "",
+      email: "faizullahkhan19113@gmail.com",
     },
   },
   {
-    id: "gen-sec",
+    id: "hiba-jamal",
     index: "03",
-    slug: "general-secretary",
-    role: "General Secretary",
-    roleCategory: "Executive Lead",
-    name: "General Secretary Name",
-    batch: "Executive Board & Governance",
-    faculty: "Faculty of Engineering & Technology",
+    slug: "hiba-jamal",
+    role: "Co-Chair",
+    roleCategory: "Leadership",
+    name: "Hiba Jamal",
+    avatar: "",
+    batch: "Founder Council & Executive Board",
+    faculty: "Faculty of Engineering, CIE",
     quote:
-      "Execution is the bridge between aspiration and triumph. Cohesion across our teams translates raw university talent into impactful ventures.",
-    focusAreas: ["Executive Governance", "Flagship Summits", "Cross-Team Operations"],
-    initials: "GS",
+      "Turning ideas into tangible impact, to build, create opportunities for people and figure out the rest along the way.",
+    focusAreas: ["Ideas", "Initiative", "Creative Chaos"],
+    initials: "HJ",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:gensec@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/hiba-jamal-8a7794254",
+      twitter: "",
+      email: "Hibajamalkhan796@gmail.com",
     },
   },
   {
-    id: "joint-sec",
+    id: "mohammad-arham",
     index: "04",
-    slug: "joint-secretary",
-    role: "Joint Secretary",
-    roleCategory: "Executive Lead",
-    name: "Joint Secretary Name",
-    batch: "Executive Board & Outreach",
-    faculty: "Faculty of Natural Sciences",
+    slug: "mohammad-arham",
+    role: "General Secretary",
+    roleCategory: "Secretary",
+    name: "Mohammad Arham",
+    avatar: "",
+    batch: "Founder Council & Executive Board",
+    faculty: "Faculty of Social Sciences",
     quote:
-      "True entrepreneurship blossoms when diverse minds intersect. Our mission is to lower the barrier to entry for every curious student builder.",
-    focusAreas: ["Student Outreach", "Hackathons & Challenges", "Talent Incubation"],
-    initials: "JS",
+      "Leadership isn't about holding a position; it's about turning vision into action, empowering people, and building something that outlasts you.",
+    focusAreas: ["Leadership", "Vision", "Execution"],
+    initials: "MA",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:jointsec@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/mohammad-arham-272a34373",
+      twitter: "",
+      email: "arham3340@gmail.com",
     },
   },
   {
-    id: "treasurer",
+    id: "mariyam",
     index: "05",
-    slug: "treasurer",
-    role: "Treasurer & Financial Controller",
-    roleCategory: "Fiscal Lead",
-    name: "Treasurer Name",
-    batch: "Executive Board & Fiscal Management",
-    faculty: "Department of Commerce & Business Studies",
+    slug: "mariyam",
+    role: "Joint Secretary",
+    roleCategory: "Secretary",
+    name: "Mariyam",
+    avatar: "",
+    batch: "Founder Council & Executive Board",
+    faculty: "Faculty of Social Sciences",
     quote:
-      "Sustainable innovation requires disciplined capital allocation. We ensure every rupee fuels student vision and maximum community impact.",
-    focusAreas: ["Venture Grants", "Corporate Sponsorships", "Fiscal Audits"],
-    initials: "TR",
+      "Curious about ideas, passionate about entrepreneurship, and always excited to meet new people, explore possibilities, and turn ideas into meaningful experiences.",
+    focusAreas: ["Curious", "Thoughtful", "Creative"],
+    initials: "M",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:treasurer@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/mariyam-3a32823b0",
+      twitter: "",
+      email: "mariyam881460@gmail.com",
     },
   },
   {
-    id: "strategic-advisor",
+    id: "mohd-imam-ashraf",
     index: "06",
-    slug: "strategic-advisor",
-    role: "Strategic Advisor",
-    roleCategory: "Advisory Council",
-    name: "Strategic Advisor Name",
-    batch: "Alumni Council & Industry Advisory",
-    faculty: "Faculty of Engineering & Technology",
+    slug: "mohd-imam-ashraf",
+    role: "HR Secretary",
+    roleCategory: "Secretary",
+    name: "Mohd Imam Ashraf",
+    avatar: "",
+    batch: "Founder Council & Executive Board",
+    faculty: "Department of Commerce and Business Studies",
     quote:
-      "The next generation of breakout startups will come from campuses. Our responsibility is to provide the strategic clarity and mentorship to steer them right.",
-    focusAreas: ["Institutional Alignment", "Angel Syndicates", "Ecosystem Expansion"],
-    initials: "SA",
+      "Dedicated HR leader passionate about talent acquisition, team management, and building collaborative, high-performing teams.",
+    focusAreas: ["Ambitious", "Responsible", "Adaptable"],
+    initials: "IA",
     socials: {
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      email: "mailto:advisor@ecelljmi.com",
+      linkedin: "https://www.linkedin.com/in/imam-ashraf-219664384",
+      twitter: "",
+      email: "",
     },
   },
 ];
@@ -193,36 +199,6 @@ export default function Teams() {
               <LeadershipSpotlightCard key={leader.id} leader={leader} />
             ))}
           </div>
-
-          {/* Offer Letter & Member Profile QR Section (Minimalist Glass Banner) */}
-          <section className="mt-16 sm:mt-24 p-8 sm:p-12 rounded-[2rem] bg-black/40 backdrop-blur-2xl text-white shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.12)] border border-white/10 relative overflow-hidden">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-amber-300 text-xs font-mono mb-3">
-                  <QrCode className="w-3.5 h-3.5" />
-                  <span>OFFER LETTER VERIFICATION</span>
-                </div>
-
-                <h3 className="text-2xl sm:text-3xl font-heading font-black tracking-tight text-white mb-2 uppercase">
-                  Are You an Inducted Member?
-                </h3>
-
-                <p className="text-sm sm:text-base text-white/70 leading-relaxed font-sans">
-                  Every appointed E-Cell member receives an official offer letter equipped with a unique QR credential. Scan your letter to view and share your cryptographic digital membership pass.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-                <Link
-                  href="/teams/demo-member"
-                  className="px-6 py-3.5 rounded-full glow-orange-button text-white text-xs sm:text-sm font-bold inline-flex items-center gap-2 shadow-xl hover:shadow-orange-500/40 transition-all uppercase tracking-wide active:scale-95"
-                >
-                  <span>Preview Demo Credential</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </section>
 
         </div>
       </main>

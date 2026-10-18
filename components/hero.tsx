@@ -159,7 +159,7 @@ export function Hero() {
         <div className="relative z-30 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 pt-2 pb-3">
           
           {/* BOTTOM LEFT: EXPLORE COHORTS CARD (Matching "EXPLORE NEW WORLDS" Card in Reference) */}
-          <div className="w-full sm:w-auto bg-white/95 text-zinc-950 rounded-2xl p-3 sm:p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.35)] backdrop-blur-md flex items-center gap-3.5 max-w-[340px] border border-white/40 transform -translate-y-[90%] md:-translate-x-[30%] transition-transform duration-300">
+          <div className="w-full sm:w-auto bg-white/95 text-zinc-950 rounded-2xl p-3 sm:p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.35)] backdrop-blur-md flex items-center gap-3.5 max-w-[340px] border border-white/40 transform -translate-y-[90%] md:-translate-x-[-25%] transition-transform duration-300">
             <div className="relative w-20 h-16 rounded-xl overflow-hidden bg-black shrink-0">
               <Image
                 src="/images/founder-portrait.jpg"
@@ -179,7 +179,7 @@ export function Hero() {
               </p>
             </div>
             <Link
-              href="#startups"
+              href="/startup"
               className="w-8 h-8 rounded-full border border-zinc-200 hover:border-zinc-950 bg-zinc-50 hover:bg-zinc-950 text-zinc-700 hover:text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
               aria-label="Explore cohorts"
             >
@@ -188,7 +188,7 @@ export function Hero() {
           </div>
 
           {/* BOTTOM RIGHT: METRICS PILL CARD (Matching "4K / 120° / <20ms" Card in Reference) */}
-          <div className="w-full sm:w-auto bg-white/95 text-zinc-950 rounded-2xl px-5 sm:px-7 py-3 sm:py-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.35)] backdrop-blur-md flex items-center justify-around sm:justify-start gap-4 sm:gap-7 divide-x divide-zinc-200 border border-white/40 transform -translate-y-[110%] md:translate-x-[30%] transition-transform duration-300">
+          <div className="w-full sm:w-auto bg-white/95 text-zinc-950 rounded-2xl px-5 sm:px-7 py-3 sm:py-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.35)] backdrop-blur-md flex items-center justify-around sm:justify-start gap-4 sm:gap-7 divide-x divide-zinc-200 border border-white/40 transform -translate-y-[110%] md:translate-x-[1%] transition-transform duration-300">
             {/* Stat 1 */}
             <div className="text-left">
               <p className="text-lg sm:text-2xl font-black font-heading tracking-tight leading-none text-zinc-950">

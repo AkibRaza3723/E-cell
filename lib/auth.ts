@@ -1,6 +1,5 @@
 import { betterAuth } from "better-auth";
 import { createAuthMiddleware, APIError } from "better-auth/api";
-import { Pool } from "pg";
 
 export function isAllowedAdminEmail(email?: string | null): boolean {
   if (!email) return false;
@@ -12,21 +11,9 @@ export function isAllowedAdminEmail(email?: string | null): boolean {
   return allowed.includes(email.trim().toLowerCase());
 }
 
-let pool: Pool | null = null;
+import { getDbPool } from "@/lib/db";
 
-function getPool(): Pool | null {
-  if (!process.env.DATABASE_URL) {
-    return null;
-  }
-  if (!pool) {
-    pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-    });
-  }
-  return pool;
-}
-
-const activePool = getPool();
+const activePool = getDbPool();
 
 const adminEmailGuardMiddleware = createAuthMiddleware(async (ctx) => {
   if (ctx.path === "/sign-in/email" || ctx.path === "/sign-up/email") {

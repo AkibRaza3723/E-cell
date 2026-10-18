@@ -1,11 +1,29 @@
+import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { StartupShowcase } from "@/components/startup-showcase";
+import { StartupShowcase, DbStartup } from "@/components/startup-showcase";
+import { prisma } from "@/lib/db";
 
 export const metadata = {
   title: "Student Ventures | E-Cell JMI",
-  description: "Explore three incubated student-led startups from Jamia Millia Islamia — spanning Autonomous Drones, Battery Intelligence, and Edge Cloud.",
+  description: "Explore incubated student-led startups from Jamia Millia Islamia accelerating innovation.",
 };
+
+async function StartupsSection() {
+  let startups: DbStartup[] = [];
+  try {
+    if (prisma?.startup) {
+      startups = await prisma.startup.findMany({
+        where: { published: true },
+        orderBy: { createdAt: "desc" },
+      });
+    }
+  } catch (error) {
+    console.error("Failed to query startups from database:", error);
+  }
+
+  return <StartupShowcase initialStartups={startups} />;
+}
 
 export default function StartupPage() {
   return (
@@ -46,7 +64,16 @@ export default function StartupPage() {
 
       <Header />
       <main className="relative z-10 flex-1 pt-28 sm:pt-36 pb-24">
-        <StartupShowcase />
+        <Suspense
+          fallback={
+            <div className="py-20 flex flex-col items-center justify-center gap-3">
+              <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
+              <span className="text-xs font-mono text-orange-200">Loading student ventures...</span>
+            </div>
+          }
+        >
+          <StartupsSection />
+        </Suspense>
       </main>
       <Footer />
     </div>

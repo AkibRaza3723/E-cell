@@ -33,46 +33,49 @@ async function MemberProfile({ params }: PageProps) {
   const { members } = await params;
   const rawSlug = decodeURIComponent(members).trim();
 
-  // Query member from database by slug or ID according to Prisma schema (commented out for deployment)
-  const memberFromDb = null;
-  /*
+  // Query member from database by slug or ID according to Prisma schema
+  let member = null;
   try {
-    memberFromDb = await prisma.members.findFirst({
-      where: {
-        OR: [
-          { slug: rawSlug.toLowerCase() },
-          { id: rawSlug },
-          { slug: rawSlug },
-        ],
-      },
-    });
+    if (prisma?.members) {
+      member = await prisma.members.findFirst({
+        where: {
+          OR: [
+            { slug: rawSlug.toLowerCase() },
+            { id: rawSlug },
+            { slug: rawSlug },
+          ],
+        },
+      });
+    }
   } catch (error) {
     console.error("Database query failed:", error);
   }
-  */
 
-  // Format display name from slug if database record hasn't been seeded yet
-  const formattedName = rawSlug
-    .replace(/[-_]/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
-
-  // Conforms strictly to Prisma model:
-  // id, slug, name, team, role, batch, faculty, Avatar, linkedin, bio, github, email, createdAt
-  const member = memberFromDb ?? {
-    id: `ECELL-${rawSlug.toUpperCase().slice(0, 8)}`,
-    slug: rawSlug,
-    name: formattedName || "Team Member",
-    team: "Technical & Innovation Team",
-    role: "Core Team Member",
-    batch: "Class of 2024 - 2028",
-    faculty: "Faculty of Engineering & Technology",
-    Avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1791998525/7fbbd485-90e4-4e9e-96ff-2b9e8cc8e4b1.png",
-    linkedin: "https://linkedin.com",
-    github: "https://github.com",
-    email: "member@ecelljmi.com",
-    bio: "Passionate about building scalable technology systems, incubating student-led startups, and contributing to the entrepreneurial ecosystem at Jamia Millia Islamia.",
-    createdAt: new Date("2025-08-15"),
-  };
+  if (!member) {
+    return (
+      <div className="relative min-h-screen flex flex-col text-white selection:bg-orange-500 selection:text-white overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none nexora-bg-gradient z-0" />
+        <Header />
+        <main className="relative z-10 flex-1 flex flex-col items-center justify-center pt-32 pb-20 px-4 text-center">
+          <div className="max-w-md p-8 sm:p-10 rounded-[2rem] bg-black/70 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <ShieldCheck className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-80" />
+            <h2 className="text-2xl font-heading font-black uppercase text-white mb-2">Member Record Not Found</h2>
+            <p className="text-sm text-white/70 mb-6 leading-relaxed">
+              No verified digital membership credential was found matching &ldquo;{rawSlug}&rdquo;. Inducted member passes uploaded via the Admin Portal will be accessible here.
+            </p>
+            <Link
+              href="/teams"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full glow-orange-button text-xs font-bold uppercase tracking-wider text-white hover:scale-105 transition-transform"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Executive Leadership</span>
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const initials = getInitials(member.name);
   const inductionDate = new Date(member.createdAt).toLocaleDateString("en-US", {

@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BlogCard } from "@/components/blog-card";
 import { getBlogs } from "@/lib/blogs-data";
+import { BookOpen, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Blogs | E-Cell JMI",
@@ -12,6 +13,26 @@ export const metadata = {
 
 async function BlogsGrid() {
   const blogs = await getBlogs();
+
+  if (blogs.length === 0) {
+    return (
+      <div className="max-w-2xl mx-auto text-center py-20 px-6 sm:px-12 rounded-[2rem] bg-black/60 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-amber-300 mx-auto mb-6 shadow-inner">
+          <BookOpen className="w-8 h-8" />
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-heading font-black uppercase text-white tracking-tight mb-3">
+          No Publications Yet
+        </h2>
+        <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto mb-8 font-sans">
+          Founder stories, case studies, and entrepreneurial articles will be published here once authored through the Admin Portal.
+        </p>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-xs font-mono text-amber-200">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span>E-Cell Editorial Desk &bull; Jamia Millia Islamia</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
