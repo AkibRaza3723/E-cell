@@ -158,6 +158,10 @@ export function Footer() {
             <Link href="#terms" className="hover:text-zinc-300 transition-colors">
               Terms of Service
             </Link>
+            <span>•</span>
+            <Link href="/admin" className="hover:text-orange-400 transition-colors">
+              Admin Portal
+            </Link>
           </div>
         </div>
 

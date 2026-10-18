@@ -8,58 +8,143 @@ datasource db {
   provider = "postgresql"
 }
 
-model admin{
-  id  String @id @default(uuid())
+// ─── Better-Auth Required Tables ────────────────────────────────────────────
+
+model user {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  role          String    @default("user")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      session[]
+  accounts      account[]
+}
+
+model session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model account {
+  id                   String    @id @default(uuid())
+  userId               String
+  accountId            String
+  providerId           String
+  accessToken          String?
+  refreshToken         String?
+  idToken              String?
+  expiresAt            DateTime?
+  password             String?
+  accessTokenExpiresAt DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  user                 user      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model verification {
+  id         String   @id @default(uuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ─── Legacy admin table (preserved) ─────────────────────────────────────────
+ 
+model admin {
+  id       String @id @default(uuid())
   username String @unique
   password String
 }
 
+// ─── Members ─────────────────────────────────────────────────────────────────
+
+model members {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  name      String
+  team      String
+  role      String   @default("Core Team Member")
+  batch     String
+  faculty   String
+  Avatar    String
+  linkedin  String
+  bio       String?
+  github    String?
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Events ──────────────────────────────────────────────────────────────────
+
 model event {
   id               String   @id @default(uuid())
   title            String
+  slug             String?
   shortTitle       String?
-  month            String
-  monthNumber      Int
-  year             Int
-  dayOfWeek        String
-  dayNumber        String
-  fullDate         String
-  time             String
-  venue            String
-  category         String
+  month            String?
+  monthNumber      Int?
+  year             Int?
+  dayOfWeek        String?
+  dayNumber        String?
+  fullDate         String?
+  time             String?
+  venue            String?
+  category         String?
   tags             String[]
   description      String
-  image            String
-  registrationLink String
+  image            String?
+  registrationLink String?
   isUpcoming       Boolean  @default(true)
   isOngoing        Boolean  @default(false)
   isCompleted      Boolean  @default(false)
   statusBadge      String   @default("Upcoming")
+  published        Boolean  @default(true)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
 
-model members{
-    id String @id @default(uuid())
-    slug String @unique
-    name String 
-    team String
-    role String @default("Core Team Member")
-    batch String
-    faculty String
-    Avatar String
-    linkedin String
-    bio String?
-    github String?
-    email String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-} 
+// ─── Blogs ───────────────────────────────────────────────────────────────────
 
-model blogs{
-    id String @id @default(uuid())
-    title String
-    content String 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model blogs {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String?
+  excerpt     String?
+  content     String
+  coverImage  String?
+  authorName  String   @default("E-Cell JMI")
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ─── Startups ─────────────────────────────────────────────────────────────────
+
+model startup {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String
+  website     String?
+  logo        String?
+  founder     String?
+  category    String?
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
