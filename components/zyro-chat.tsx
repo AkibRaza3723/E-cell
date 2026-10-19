@@ -33,32 +33,32 @@ interface Message {
 
 const STARTER_PROMPTS = [
   {
-    icon: Target,
-    title: "Pitch Deck Teardown",
-    subtitle: "30-second elevator pitch audit",
+    icon: Lightbulb,
+    title: "Startup vs Small Business",
+    subtitle: "Understanding core differences",
     prompt:
-      "Critique my 30-second elevator pitch. What are the 3 biggest red flags early-stage venture investors look for in student startups, and how do I fix them?",
+      "What is the key difference between a scalable startup and a traditional small business, and how do scalability and innovation define a startup?",
+  },
+  {
+    icon: Target,
+    title: "Validating an Idea",
+    subtitle: "Testing demand before building",
+    prompt:
+      "How do entrepreneurs validate a startup idea without spending months or large amounts of capital building the product?",
   },
   {
     icon: TrendingUp,
-    title: "TAM / SAM / SOM Sizing",
-    subtitle: "Bottom-up market calculation",
+    title: "Startup Funding 101",
+    subtitle: "Bootstrapping vs Venture Capital",
     prompt:
-      "Walk me through a bottom-up market sizing (TAM, SAM, SOM) calculation for a B2B SaaS startup in India. Show realistic conversion metrics and formula steps.",
+      "How does startup funding work? Can you explain the difference between bootstrapping, angel investors, and venture capital?",
   },
   {
-    icon: Lightbulb,
-    title: "Lean Business Canvas",
-    subtitle: "Revenue models & value prop",
+    icon: Rocket,
+    title: "Student Entrepreneurship",
+    subtitle: "First steps & campus opportunities",
     prompt:
-      "Build a complete Lean Business Model Canvas for an AI workflow tool targeting freelancers and agency owners. Detail the customer segments, revenue streams, and unfair advantage.",
-  },
-  {
-    icon: ShieldAlert,
-    title: "Tough VC Simulation",
-    subtitle: "Defensibility & moat stress-test",
-    prompt:
-      "Act as a skeptical venture capital partner evaluating our seed round. Ask me 4 tough questions probing our defensibility, customer acquisition cost, and churn risks.",
+      "What are the best first steps for a college student who wants to explore entrepreneurship and start building something on campus?",
   },
 ];
 
@@ -309,10 +309,10 @@ export function ZyroChat() {
   };
 
   return (
-    <div className="w-full flex flex-col flex-1 min-h-[calc(100vh-140px)]">
+    <div className="w-full flex flex-col flex-1 min-h-0 overflow-hidden">
       
-      {/* Top Floating App Bar (ChatGPT / Claude style) */}
-      <div className="sticky top-20 z-20 backdrop-blur-xl bg-[#09090b]/80 border-b border-white/[0.06] px-4 sm:px-6 py-2.5 flex items-center justify-between transition-all">
+      {/* Top Floating App Bar */}
+      <div className="shrink-0 backdrop-blur-xl bg-[#09090b]/80 border-b border-white/[0.06] px-4 sm:px-6 py-2.5 flex items-center justify-between transition-all z-20">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-zinc-800 to-zinc-900 border border-orange-500/30 flex items-center justify-center text-orange-400 shadow-[0_0_15px_rgba(249,115,22,0.15)] shrink-0">
             <Sparkles className="w-4 h-4 text-orange-400" />
@@ -350,46 +350,47 @@ export function ZyroChat() {
       </div>
 
       {/* Main Conversation Stream */}
-      <div className="flex-1 w-full max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col justify-between">
+      <div className="flex-1 min-h-0 overflow-y-auto w-full px-4 sm:px-6 py-4 sm:py-6 flex flex-col">
+        <div className="w-full max-w-3xl lg:max-w-4xl mx-auto flex-1 flex flex-col justify-between">
         
-        {/* State A: Empty Chat Welcome Hero (Clean Claude/ChatGPT style) */}
+        {/* State A: Empty Chat Welcome Hero */}
         {messages.length === 0 ? (
-          <div className="my-auto py-10 flex flex-col items-center text-center select-none">
+          <div className="my-auto py-2 sm:py-6 flex flex-col items-center text-center select-none w-full">
             
             {/* Center Sleek AI Mark */}
-            <div className="w-16 h-16 rounded-3xl bg-gradient-to-b from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center text-orange-400 shadow-[0_0_35px_rgba(249,115,22,0.18),inset_0_1px_1px_rgba(255,255,255,0.15)] mb-6 animate-in zoom-in-95 duration-500">
-              <Sparkles className="w-8 h-8 text-orange-400" />
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center text-orange-400 shadow-[0_0_35px_rgba(249,115,22,0.18),inset_0_1px_1px_rgba(255,255,255,0.15)] mb-3 sm:mb-6 animate-in zoom-in-95 duration-500">
+              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-orange-400" />
             </div>
 
-            <h1 className="font-heading font-black text-3xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight leading-tight uppercase">
-              What are you building today?
+            <h1 className="font-heading font-black text-2xl sm:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 tracking-tight leading-tight uppercase">
+              Explore Startups & Entrepreneurship
             </h1>
             
-            <p className="mt-3 text-sm sm:text-base text-zinc-400 max-w-xl mx-auto font-sans leading-relaxed">
-              Zyro is your venture architect — trained on pitch teardowns, TAM/SAM/SOM calculations, business models, and investor due diligence.
+            <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-zinc-400 max-w-lg sm:max-w-xl mx-auto font-sans leading-relaxed px-2">
+              Zyro is your AI guide to entrepreneurship — ask anything about startup concepts, validating ideas, funding models, and venture building.
             </p>
 
-            {/* Quick Action Category Chips */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-6 max-w-2xl">
+            {/* Quick Action Suggestion Chips / Chat Options - Visible right away on phone & desktop */}
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6 max-w-2xl px-1">
               {[
-                { label: "Elevator Pitch", prompt: "Help me refine my 30-second elevator pitch for a student-led venture." },
-                { label: "TAM / SAM / SOM", prompt: "Explain how to calculate TAM, SAM, and SOM for an Indian B2B tech startup." },
-                { label: "Unit Economics", prompt: "What formulas should I use to calculate CAC, LTV, and payback period?" },
-                { label: "VC Red Flags", prompt: "What are the most common red flags seed venture funds find in pitch decks?" },
-                { label: "GTM Strategy", prompt: "Outline a 90-day zero-dollar Go-To-Market strategy for an early-stage SaaS." }
+                { label: "What is an MVP?", prompt: "What is a Minimum Viable Product (MVP), and how does an entrepreneur build one?" },
+                { label: "Startup vs Business", prompt: "What is the key difference between a scalable startup and a traditional small business?" },
+                { label: "Finding Co-founders", prompt: "How do entrepreneurs find and evaluate the right co-founders?" },
+                { label: "Funding Stages", prompt: "Can you explain the stages of startup funding from Seed to Series A and beyond?" },
+                { label: "Product-Market Fit", prompt: "What does Product-Market Fit (PMF) mean and how do you know when you have achieved it?" },
               ].map((chip, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleSend(chip.prompt)}
-                  className="px-3 py-1 rounded-full text-xs font-sans text-zinc-300 bg-zinc-900/70 hover:bg-zinc-800 border border-white/10 hover:border-orange-500/40 hover:text-white transition-all cursor-pointer"
+                  className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-sans text-zinc-300 bg-zinc-900/70 hover:bg-zinc-800 border border-white/10 hover:border-orange-500/40 hover:text-white transition-all cursor-pointer active:scale-95"
                 >
                   {chip.label}
                 </button>
               ))}
             </div>
 
-            {/* 4 Professional Prompt Starter Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full mt-8 text-left">
+            {/* 4 Professional Prompt Starter Cards (Desktop Only - Hidden on Phone) */}
+            <div className="hidden sm:grid grid-cols-2 gap-3.5 w-full mt-6 sm:mt-8 text-left">
               {STARTER_PROMPTS.map((card, idx) => {
                 const IconComponent = card.icon;
                 return (
@@ -417,7 +418,7 @@ export function ZyroChat() {
           </div>
         ) : (
           /* State B: Active Conversational Stream */
-          <div className="space-y-8 pb-32">
+          <div className="space-y-6 sm:space-y-8 pb-6">
             {messages.map((msg) => {
               const isUser = msg.role === "user";
               return (
@@ -504,7 +505,7 @@ export function ZyroChat() {
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-bounce [animation-delay:-0.15s]" />
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-bounce" />
                   <span className="ml-2 text-zinc-300">
-                    Zyro is analyzing your startup architecture...
+                    Zyro is exploring entrepreneurship insights...
                   </span>
                 </div>
               </div>
@@ -514,11 +515,12 @@ export function ZyroChat() {
           </div>
         )}
 
+        </div>
       </div>
 
-      {/* Floating Bottom Input Dock (Claude & ChatGPT signature pinned bar) */}
-      <div className="sticky bottom-0 z-30 w-full pb-6 pt-2 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6">
+      {/* Floating Bottom Input Dock */}
+      <div className="shrink-0 w-full pb-3 sm:pb-5 pt-2 bg-gradient-to-t from-[#09090b] via-[#09090b]/95 to-transparent">
+        <div className="max-w-3xl lg:max-w-4xl mx-auto px-3 sm:px-6">
           <div className="relative rounded-2xl sm:rounded-3xl bg-[#121215]/95 border border-white/[0.12] backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.06)] focus-within:border-orange-500/60 focus-within:ring-2 focus-within:ring-orange-500/20 transition-all">
             
             <textarea
@@ -527,11 +529,11 @@ export function ZyroChat() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask Zyro anything (e.g. 'Critique our B2B SaaS pitch', 'How do we calculate CAC/LTV?')..."
-              className="w-full bg-transparent px-5 pt-4 pb-12 text-sm text-white placeholder:text-zinc-500 focus:outline-none resize-none font-sans leading-relaxed"
+              placeholder="Ask anything about startups & entrepreneurship..."
+              className="w-full bg-transparent px-4 sm:px-5 pt-3 sm:pt-4 pb-10 sm:pb-12 text-xs sm:text-sm text-white placeholder:text-zinc-500 focus:outline-none resize-none font-sans leading-relaxed"
             />
 
-            <div className="absolute bottom-3 left-4 right-3 flex items-center justify-between pointer-events-none">
+            <div className="absolute bottom-2.5 sm:bottom-3 left-3 sm:left-4 right-3 flex items-center justify-between pointer-events-none">
               <span className="text-[11px] font-mono text-zinc-500 pointer-events-auto hidden sm:inline">
                 Shift + Enter for new line &bull; Enter to send
               </span>
@@ -542,7 +544,7 @@ export function ZyroChat() {
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="pointer-events-auto w-9 h-9 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 disabled:opacity-30 disabled:cursor-not-allowed text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                className="pointer-events-auto w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 disabled:opacity-30 disabled:cursor-not-allowed text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                 aria-label="Send message"
               >
                 <ArrowUp className="w-4 h-4" />
@@ -550,8 +552,8 @@ export function ZyroChat() {
             </div>
           </div>
 
-          <p className="text-[11px] text-zinc-500 text-center mt-2 font-sans">
-            Zyro utilizes venture frameworks powered by Amazon Bedrock. Confirm critical legal and fundraising decisions with E-Cell mentors.
+          <p className="text-[10px] sm:text-[11px] text-zinc-500 text-center mt-1.5 sm:mt-2 font-sans">
+            Zyro provides educational guidance on startups & entrepreneurship. Powered by Amazon Bedrock.
           </p>
         </div>
       </div>
