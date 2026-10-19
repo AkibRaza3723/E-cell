@@ -151,6 +151,11 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-4 text-zinc-500">
+            <Link href="/zyro" className="hover:text-orange-400 text-orange-400/90 font-semibold transition-colors flex items-center gap-1">
+              <span>Zyro AI</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-orange-500/20 text-orange-300 font-mono text-[9px]">NEW</span>
+            </Link>
+            <span>•</span>
             <Link href="#privacy" className="hover:text-zinc-300 transition-colors">
               Privacy Policy
             </Link>
