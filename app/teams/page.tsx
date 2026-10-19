@@ -123,8 +123,8 @@ const leadershipData: LeaderData[] = [
     socials: {
       linkedin: "https://www.linkedin.com/in/imam-ashraf-219664384",
       twitter: "",
-      email: "",
-    },
+      email: "imamashraf.88888@gmail.com",
+    }, 
   },
 ];
 

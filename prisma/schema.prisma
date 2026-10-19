@@ -123,9 +123,10 @@ model event {
 model blogs {
   id          String   @id @default(uuid())
   title       String
+  link        String?
   slug        String?
   excerpt     String?
-  content     String
+  content     String?  @default("")
   coverImage  String?
   authorName  String   @default("E-Cell JMI")
   published   Boolean  @default(true)

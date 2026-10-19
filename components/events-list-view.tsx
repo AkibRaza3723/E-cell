@@ -165,38 +165,28 @@ export function EventsListView({ initialEvents }: EventsListViewProps) {
 
       </div>
 
-      {/* No Events Found Empty State */}
-      {filteredEvents.length === 0 && (
-        <div className="py-24 text-center rounded-3xl bg-black/50 backdrop-blur-xl border border-white/15">
-          <Calendar className="w-12 h-12 text-white/20 mx-auto mb-4" />
-          <h3 className="text-xl font-heading font-bold text-white mb-2">No Events Found</h3>
-          <p className="text-sm text-white/60 font-sans max-w-md mx-auto mb-6">
-            No events match your current filter selection ({selectedStatus !== "ALL" ? selectedStatus.toLowerCase() : ""}{" "}
-            {selectedMonth !== "ALL" ? `in ${selectedMonth}` : ""}). Try resetting your filters.
-          </p>
-          <button
-            onClick={() => {
-              setSelectedStatus("ALL");
-              setSelectedMonth("ALL");
-              setSearchQuery("");
-            }}
-            className="px-5 py-2.5 rounded-full glow-orange-button text-white text-xs font-mono uppercase tracking-wider font-bold cursor-pointer"
-          >
-            Show All Events
-          </button>
-        </div>
-      )}
-
-      {/* Events Grouped by Month */}
+      {/* Events Grouped by Month / Empty State */}
       {filteredEvents.length === 0 ? (
-        <div className="text-center py-20 px-6 rounded-3xl bg-black/40 border border-white/10 backdrop-blur-xl">
+        <div className="py-24 px-6 text-center rounded-3xl bg-black/50 backdrop-blur-xl border border-white/15">
           <Calendar className="w-12 h-12 text-amber-400/60 mx-auto mb-4" />
           <h3 className="text-xl font-heading font-bold text-white mb-2">No Events Found</h3>
-          <p className="text-sm text-white/60 max-w-md mx-auto">
+          <p className="text-sm text-white/60 font-sans max-w-md mx-auto mb-6">
             {initialEvents.length === 0
               ? "No events have been published yet. Events uploaded through the Admin Portal will appear here."
-              : "No events match the current filter or search criteria."}
+              : "No events match your current filter or search criteria. Try resetting your filters."}
           </p>
+          {initialEvents.length > 0 && (
+            <button
+              onClick={() => {
+                setSelectedStatus("ALL");
+                setSelectedMonth("ALL");
+                setSearchQuery("");
+              }}
+              className="px-5 py-2.5 rounded-full glow-orange-button text-white text-xs font-mono uppercase tracking-wider font-bold cursor-pointer"
+            >
+              Show All Events
+            </button>
+          )}
         </div>
       ) : (
         <div className="space-y-14">

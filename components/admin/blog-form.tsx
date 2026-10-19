@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, AlertCircle, Eye, Edit3, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Save, AlertCircle, Link2, ExternalLink, Image as ImageIcon } from "lucide-react";
 import { createBlog, updateBlog, BlogInput } from "@/lib/actions/blogs-actions";
 
 interface BlogFormProps {
-  initialData?: (BlogInput & { id: string }) | null;
+  initialData?: (Partial<BlogInput> & { id: string; link?: string | null }) | null;
   isEdit?: boolean;
 }
 
@@ -15,12 +15,11 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"edit" | "preview">("edit");
 
   const [title, setTitle] = useState(initialData?.title || "");
+  const [link, setLink] = useState(initialData?.link || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
   const [excerpt, setExcerpt] = useState(initialData?.excerpt || "");
-  const [content, setContent] = useState(initialData?.content || "");
   const [coverImage, setCoverImage] = useState(initialData?.coverImage || "");
   const [authorName, setAuthorName] = useState(initialData?.authorName || "E-Cell Editorial");
   const [published, setPublished] = useState(initialData?.published ?? true);
@@ -43,21 +42,21 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
     setSubmitting(true);
 
     if (!title.trim()) {
-      setError("Blog title is required");
+      setError("Article title is required");
       setSubmitting(false);
       return;
     }
-    if (!content.trim()) {
-      setError("Blog content is required");
+    if (!link.trim()) {
+      setError("Article link (Medium, LinkedIn, etc.) is required");
       setSubmitting(false);
       return;
     }
 
     const payload: BlogInput = {
       title,
+      link,
       slug,
       excerpt,
-      content,
       coverImage,
       authorName,
       published,
@@ -67,14 +66,14 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
       if (isEdit && initialData?.id) {
         const res = await updateBlog(initialData.id, payload);
         if (!res.success) {
-          setError(res.error || "Failed to update blog");
+          setError(res.error || "Failed to update article");
           setSubmitting(false);
           return;
         }
       } else {
         const res = await createBlog(payload);
         if (!res.success) {
-          setError(res.error || "Failed to create blog");
+          setError(res.error || "Failed to add article");
           setSubmitting(false);
           return;
         }
@@ -100,12 +99,12 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
           </Link>
           <div>
             <h1 className="font-heading text-2xl font-bold text-white">
-              {isEdit ? "Edit Society Blog Post" : "Write New Blog Post"}
+              {isEdit ? "Edit Society Article" : "Link New Article"}
             </h1>
             <p className="text-xs text-zinc-400 mt-0.5">
               {isEdit
-                ? `Editing article: ${initialData?.title}`
-                : "Author insights, startup interviews, and entrepreneurship guides."}
+                ? `Editing publication: ${initialData?.title}`
+                : "Curate and link Medium, LinkedIn, and external publications."}
             </p>
           </div>
         </div>
@@ -122,7 +121,8 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
         onSubmit={handleSubmit}
         className="rounded-2xl bg-zinc-950/80 border border-white/[0.08] p-6 sm:p-8 backdrop-blur-xl space-y-6"
       >
-        <div className="space-y-4">
+        <div className="space-y-5">
+          {/* Article Title */}
           <div>
             <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
               Article Title *
@@ -137,10 +137,56 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
             />
           </div>
 
+          {/* External Article URL (Medium / LinkedIn) */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs font-semibold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
+                <Link2 className="w-3.5 h-3.5 text-orange-400" />
+                <span>Article Link (Medium / LinkedIn / External URL) *</span>
+              </label>
+              {link && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-orange-400 hover:text-orange-300 flex items-center gap-1"
+                >
+                  <span>Test Link</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+            </div>
+            <input
+              type="url"
+              required
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="https://medium.com/@ecelljmi/... or https://linkedin.com/pulse/..."
+              className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50 font-mono"
+            />
+            <p className="mt-1.5 text-[11px] text-zinc-500">
+              Paste the direct link to the publication on Medium, LinkedIn, Substack, or your external blogging platform.
+            </p>
+          </div>
+
+          {/* Author & Slug */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                Slug (URL Path)
+                Author / Byline
+              </label>
+              <input
+                type="text"
+                value={authorName}
+                onChange={(e) => setAuthorName(e.target.value)}
+                placeholder="e.g. Sarah Jenkins & E-Cell Editorial"
+                className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
+                Slug (Optional Identifier)
               </label>
               <input
                 type="text"
@@ -150,21 +196,9 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
                 className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50"
               />
             </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                Author / Byline
-              </label>
-              <input
-                type="text"
-                value={authorName}
-                onChange={(e) => setAuthorName(e.target.value)}
-                placeholder="E-Cell Editorial Team"
-                className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50"
-              />
-            </div>
           </div>
 
+          {/* Cover Image & Excerpt */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
@@ -181,73 +215,36 @@ export function BlogForm({ initialData, isEdit = false }: BlogFormProps) {
 
             <div>
               <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                Short Excerpt
+                Short Excerpt / Summary
               </label>
               <input
                 type="text"
                 value={excerpt}
                 onChange={(e) => setExcerpt(e.target.value)}
-                placeholder="A concise synopsis to display on article preview cards..."
+                placeholder="Brief 1-2 sentence synopsis shown on the card..."
                 className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50"
               />
             </div>
           </div>
-        </div>
 
-        {/* Content Editor with Preview Mode */}
-        <div className="space-y-2 pt-4 border-t border-white/[0.06]">
-          <div className="flex items-center justify-between pb-1">
-            <label className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">
-              Article Content (Markdown supported) *
-            </label>
-
-            <div className="flex items-center gap-1 bg-white/[0.03] border border-white/10 p-1 rounded-xl">
-              <button
-                type="button"
-                onClick={() => setActiveTab("edit")}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                  activeTab === "edit"
-                    ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                <Edit3 className="w-3.5 h-3.5" />
-                <span>Write</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("preview")}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                  activeTab === "preview"
-                    ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>Preview</span>
-              </button>
-            </div>
-          </div>
-
-          {activeTab === "edit" ? (
-            <textarea
-              required
-              rows={12}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your article in markdown format...&#10;&#10;## Introduction&#10;Share your insights, advice for founders, or society announcements here."
-              className="w-full bg-white/[0.03] border border-white/10 rounded-xl p-4 text-sm text-zinc-100 font-mono placeholder:text-zinc-600 focus:outline-none focus:border-orange-500/50 leading-relaxed resize-y"
-            />
-          ) : (
-            <div className="min-h-[300px] w-full bg-white/[0.02] border border-white/10 rounded-xl p-5 text-sm text-zinc-200 leading-relaxed overflow-y-auto whitespace-pre-wrap">
-              {content || (
-                <span className="text-zinc-600 italic">No content written yet. Switch to the 'Write' tab to draft your post.</span>
-              )}
+          {/* Image Thumbnail Preview */}
+          {coverImage && (
+            <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-3">
+              <img
+                src={coverImage}
+                alt="Preview"
+                className="w-16 h-12 object-cover rounded-lg border border-white/10 bg-zinc-900"
+                onError={(e) => ((e.target as HTMLElement).style.display = "none")}
+              />
+              <div className="text-xs text-zinc-400">
+                <span className="font-semibold text-zinc-300 block">Cover Image Preview</span>
+                <span className="text-[11px] text-zinc-500">Image loaded successfully from URL</span>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Publication switch */}
+        {/* Publication switch & Submit */}
         <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
           <label className="relative flex items-center gap-2 cursor-pointer select-none text-sm text-zinc-300">
             <input

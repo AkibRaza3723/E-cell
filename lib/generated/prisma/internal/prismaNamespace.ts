@@ -1252,6 +1252,7 @@ export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof Ev
 export const BlogsScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  link: 'link',
   slug: 'slug',
   excerpt: 'excerpt',
   content: 'content',

@@ -6,9 +6,9 @@ export interface BlogItem {
   image: string;
   authorName: string;
   authorSubtitle: string;
+  link: string;
   slug?: string | null;
   excerpt?: string | null;
-  content?: string;
   createdAt?: Date;
 }
 
@@ -30,8 +30,8 @@ export async function getBlogs(): Promise<BlogItem[]> {
       title: b.title,
       slug: b.slug,
       excerpt: b.excerpt,
-      content: b.content,
-      image: b.coverImage?.trim() || "/images/events/enord-case-com.jpg",
+      link: b.link?.trim() || "#",
+      image: b.coverImage?.trim() || "/images/ecelllogo.png",
       authorName: b.authorName?.trim() || "E-Cell JMI",
       authorSubtitle: "Creating Job Creators",
       createdAt: b.createdAt,

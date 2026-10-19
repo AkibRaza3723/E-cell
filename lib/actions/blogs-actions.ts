@@ -6,9 +6,9 @@ import { revalidatePath } from "next/cache";
 
 export interface BlogInput {
   title: string;
+  link: string;
   slug?: string;
   excerpt?: string;
-  content: string;
   coverImage?: string;
   authorName?: string;
   published?: boolean;
@@ -41,6 +41,13 @@ export async function getBlogById(id: string) {
 export async function createBlog(data: BlogInput) {
   await requireAdminSession();
 
+  if (!data.title?.trim()) {
+    return { success: false, error: "Article title is required" };
+  }
+  if (!data.link?.trim()) {
+    return { success: false, error: "External article URL (Medium, LinkedIn, etc.) is required" };
+  }
+
   const generatedSlug =
     data.slug?.trim() ||
     data.title
@@ -49,13 +56,15 @@ export async function createBlog(data: BlogInput) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
+  const cleanLink = data.link.trim();
+
   try {
     const blog = await prisma.blogs.create({
       data: {
         title: data.title.trim(),
+        link: cleanLink,
         slug: generatedSlug,
         excerpt: data.excerpt?.trim() || null,
-        content: data.content.trim(),
         coverImage: data.coverImage?.trim() || null,
         authorName: data.authorName?.trim() || "E-Cell JMI",
         published: data.published ?? true,
@@ -82,9 +91,9 @@ export async function updateBlog(id: string, data: Partial<BlogInput>) {
       where: { id },
       data: {
         ...(data.title !== undefined && { title: data.title.trim() }),
+        ...(data.link !== undefined && { link: data.link.trim() }),
         ...(data.slug !== undefined && { slug: data.slug.trim() }),
         ...(data.excerpt !== undefined && { excerpt: data.excerpt?.trim() || null }),
-        ...(data.content !== undefined && { content: data.content.trim() }),
         ...(data.coverImage !== undefined && { coverImage: data.coverImage?.trim() || null }),
         ...(data.authorName !== undefined && { authorName: data.authorName.trim() }),
         ...(data.published !== undefined && { published: data.published }),

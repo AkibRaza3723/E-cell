@@ -19,9 +19,9 @@ import { deleteBlog } from "@/lib/actions/blogs-actions";
 interface BlogItem {
   id: string;
   title: string;
+  link?: string | null;
   slug?: string | null;
   excerpt?: string | null;
-  content: string;
   coverImage?: string | null;
   authorName?: string | null;
   published: boolean;
@@ -189,14 +189,26 @@ export function BlogsManager({ initialBlogs }: BlogsManagerProps) {
 
               {/* Actions */}
               <div className="flex items-center gap-2 self-end md:self-center shrink-0 border-t md:border-t-0 border-white/[0.05] pt-3 md:pt-0 w-full md:w-auto justify-end">
-                <Link
-                  href="/blogs"
-                  target="_blank"
-                  className="p-2 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors"
-                  title="View Public Blogs"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </Link>
+                {b.link ? (
+                  <a
+                    href={b.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl text-zinc-500 hover:text-orange-400 hover:bg-white/[0.04] transition-colors"
+                    title="Open External Article (Medium/LinkedIn)"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                ) : (
+                  <Link
+                    href="/blogs"
+                    target="_blank"
+                    className="p-2 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors"
+                    title="View Public Blogs"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </Link>
+                )}
 
                 <Link
                   href={`/admin/blogs/${b.id}`}

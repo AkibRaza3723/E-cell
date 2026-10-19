@@ -27,6 +27,7 @@ export type AggregateBlogs = {
 export type BlogsMinAggregateOutputType = {
   id: string | null
   title: string | null
+  link: string | null
   slug: string | null
   excerpt: string | null
   content: string | null
@@ -40,6 +41,7 @@ export type BlogsMinAggregateOutputType = {
 export type BlogsMaxAggregateOutputType = {
   id: string | null
   title: string | null
+  link: string | null
   slug: string | null
   excerpt: string | null
   content: string | null
@@ -53,6 +55,7 @@ export type BlogsMaxAggregateOutputType = {
 export type BlogsCountAggregateOutputType = {
   id: number
   title: number
+  link: number
   slug: number
   excerpt: number
   content: number
@@ -68,6 +71,7 @@ export type BlogsCountAggregateOutputType = {
 export type BlogsMinAggregateInputType = {
   id?: true
   title?: true
+  link?: true
   slug?: true
   excerpt?: true
   content?: true
@@ -81,6 +85,7 @@ export type BlogsMinAggregateInputType = {
 export type BlogsMaxAggregateInputType = {
   id?: true
   title?: true
+  link?: true
   slug?: true
   excerpt?: true
   content?: true
@@ -94,6 +99,7 @@ export type BlogsMaxAggregateInputType = {
 export type BlogsCountAggregateInputType = {
   id?: true
   title?: true
+  link?: true
   slug?: true
   excerpt?: true
   content?: true
@@ -180,9 +186,10 @@ export type blogsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type BlogsGroupByOutputType = {
   id: string
   title: string
+  link: string | null
   slug: string | null
   excerpt: string | null
-  content: string
+  content: string | null
   coverImage: string | null
   authorName: string
   published: boolean
@@ -214,9 +221,10 @@ export type blogsWhereInput = {
   NOT?: Prisma.blogsWhereInput | Prisma.blogsWhereInput[]
   id?: Prisma.StringFilter<"blogs"> | string
   title?: Prisma.StringFilter<"blogs"> | string
+  link?: Prisma.StringNullableFilter<"blogs"> | string | null
   slug?: Prisma.StringNullableFilter<"blogs"> | string | null
   excerpt?: Prisma.StringNullableFilter<"blogs"> | string | null
-  content?: Prisma.StringFilter<"blogs"> | string
+  content?: Prisma.StringNullableFilter<"blogs"> | string | null
   coverImage?: Prisma.StringNullableFilter<"blogs"> | string | null
   authorName?: Prisma.StringFilter<"blogs"> | string
   published?: Prisma.BoolFilter<"blogs"> | boolean
@@ -227,9 +235,10 @@ export type blogsWhereInput = {
 export type blogsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  link?: Prisma.SortOrderInput | Prisma.SortOrder
   slug?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
-  content?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
   authorName?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -243,9 +252,10 @@ export type blogsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.blogsWhereInput[]
   NOT?: Prisma.blogsWhereInput | Prisma.blogsWhereInput[]
   title?: Prisma.StringFilter<"blogs"> | string
+  link?: Prisma.StringNullableFilter<"blogs"> | string | null
   slug?: Prisma.StringNullableFilter<"blogs"> | string | null
   excerpt?: Prisma.StringNullableFilter<"blogs"> | string | null
-  content?: Prisma.StringFilter<"blogs"> | string
+  content?: Prisma.StringNullableFilter<"blogs"> | string | null
   coverImage?: Prisma.StringNullableFilter<"blogs"> | string | null
   authorName?: Prisma.StringFilter<"blogs"> | string
   published?: Prisma.BoolFilter<"blogs"> | boolean
@@ -256,9 +266,10 @@ export type blogsWhereUniqueInput = Prisma.AtLeast<{
 export type blogsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  link?: Prisma.SortOrderInput | Prisma.SortOrder
   slug?: Prisma.SortOrderInput | Prisma.SortOrder
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
-  content?: Prisma.SortOrder
+  content?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
   authorName?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -275,9 +286,10 @@ export type blogsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.blogsScalarWhereWithAggregatesInput | Prisma.blogsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"blogs"> | string
   title?: Prisma.StringWithAggregatesFilter<"blogs"> | string
+  link?: Prisma.StringNullableWithAggregatesFilter<"blogs"> | string | null
   slug?: Prisma.StringNullableWithAggregatesFilter<"blogs"> | string | null
   excerpt?: Prisma.StringNullableWithAggregatesFilter<"blogs"> | string | null
-  content?: Prisma.StringWithAggregatesFilter<"blogs"> | string
+  content?: Prisma.StringNullableWithAggregatesFilter<"blogs"> | string | null
   coverImage?: Prisma.StringNullableWithAggregatesFilter<"blogs"> | string | null
   authorName?: Prisma.StringWithAggregatesFilter<"blogs"> | string
   published?: Prisma.BoolWithAggregatesFilter<"blogs"> | boolean
@@ -288,9 +300,10 @@ export type blogsScalarWhereWithAggregatesInput = {
 export type blogsCreateInput = {
   id?: string
   title: string
+  link?: string | null
   slug?: string | null
   excerpt?: string | null
-  content: string
+  content?: string | null
   coverImage?: string | null
   authorName?: string
   published?: boolean
@@ -301,9 +314,10 @@ export type blogsCreateInput = {
 export type blogsUncheckedCreateInput = {
   id?: string
   title: string
+  link?: string | null
   slug?: string | null
   excerpt?: string | null
-  content: string
+  content?: string | null
   coverImage?: string | null
   authorName?: string
   published?: boolean
@@ -314,9 +328,10 @@ export type blogsUncheckedCreateInput = {
 export type blogsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -327,9 +342,10 @@ export type blogsUpdateInput = {
 export type blogsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -340,9 +356,10 @@ export type blogsUncheckedUpdateInput = {
 export type blogsCreateManyInput = {
   id?: string
   title: string
+  link?: string | null
   slug?: string | null
   excerpt?: string | null
-  content: string
+  content?: string | null
   coverImage?: string | null
   authorName?: string
   published?: boolean
@@ -353,9 +370,10 @@ export type blogsCreateManyInput = {
 export type blogsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -366,9 +384,10 @@ export type blogsUpdateManyMutationInput = {
 export type blogsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -379,6 +398,7 @@ export type blogsUncheckedUpdateManyInput = {
 export type blogsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  link?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -392,6 +412,7 @@ export type blogsCountOrderByAggregateInput = {
 export type blogsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  link?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -405,6 +426,7 @@ export type blogsMaxOrderByAggregateInput = {
 export type blogsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  link?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   excerpt?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -420,6 +442,7 @@ export type blogsMinOrderByAggregateInput = {
 export type blogsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  link?: boolean
   slug?: boolean
   excerpt?: boolean
   content?: boolean
@@ -433,6 +456,7 @@ export type blogsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type blogsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  link?: boolean
   slug?: boolean
   excerpt?: boolean
   content?: boolean
@@ -446,6 +470,7 @@ export type blogsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type blogsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  link?: boolean
   slug?: boolean
   excerpt?: boolean
   content?: boolean
@@ -459,6 +484,7 @@ export type blogsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type blogsSelectScalar = {
   id?: boolean
   title?: boolean
+  link?: boolean
   slug?: boolean
   excerpt?: boolean
   content?: boolean
@@ -469,7 +495,7 @@ export type blogsSelectScalar = {
   updatedAt?: boolean
 }
 
-export type blogsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "content" | "coverImage" | "authorName" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["blogs"]>
+export type blogsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "link" | "slug" | "excerpt" | "content" | "coverImage" | "authorName" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["blogs"]>
 
 export type $blogsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "blogs"
@@ -477,9 +503,10 @@ export type $blogsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
+    link: string | null
     slug: string | null
     excerpt: string | null
-    content: string
+    content: string | null
     coverImage: string | null
     authorName: string
     published: boolean
@@ -910,6 +937,7 @@ export interface Prisma__blogsClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface blogsFieldRefs {
   readonly id: Prisma.FieldRef<"blogs", 'String'>
   readonly title: Prisma.FieldRef<"blogs", 'String'>
+  readonly link: Prisma.FieldRef<"blogs", 'String'>
   readonly slug: Prisma.FieldRef<"blogs", 'String'>
   readonly excerpt: Prisma.FieldRef<"blogs", 'String'>
   readonly content: Prisma.FieldRef<"blogs", 'String'>
