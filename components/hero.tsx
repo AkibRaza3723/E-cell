@@ -192,7 +192,7 @@ export function Hero() {
             {/* Stat 1 */}
             <div className="text-left">
               <p className="text-lg sm:text-2xl font-black font-heading tracking-tight leading-none text-zinc-950">
-                ₹25Cr+
+                -
               </p>
               <p className="text-[9px] sm:text-[10px] text-zinc-500 font-mono uppercase mt-1">
                 Capital Raised
@@ -202,7 +202,7 @@ export function Hero() {
             {/* Stat 2 */}
             <div className="pl-4 sm:pl-7 text-left">
               <p className="text-lg sm:text-2xl font-black font-heading tracking-tight leading-none text-zinc-950">
-                150+
+                -
               </p>
               <p className="text-[9px] sm:text-[10px] text-zinc-500 font-mono uppercase mt-1">
                 Startups Funded
@@ -212,10 +212,10 @@ export function Hero() {
             {/* Stat 3 */}
             <div className="pl-4 sm:pl-7 text-left">
               <p className="text-lg sm:text-2xl font-black font-heading tracking-tight leading-none text-zinc-950">
-                &lt; 12 Wks
+                &lt; -
               </p>
               <p className="text-[9px] sm:text-[10px] text-zinc-500 font-mono uppercase mt-1">
-                To Seed Round
+                Startups
               </p>
             </div>
           </div>

@@ -54,8 +54,8 @@ export function ContactShowcase() {
       items: [
         {
           name: "Technical Operations & Dev Team",
-          emailOrHandle: "tech@ecelljmi.com",
-          href: "mailto:tech@ecelljmi.com",
+          emailOrHandle: "razaakibb@gmail.com",
+          href: "mailto:razaakibb@gmail.com",
           type: "email",
         },
       ],
@@ -65,15 +65,15 @@ export function ContactShowcase() {
       items: [
         {
           name: "LinkedIn Community",
-          emailOrHandle: "linkedin.com/company/ecell-jmi",
-          href: "https://linkedin.com/company/ecell-jmi",
+          emailOrHandle: "linkedin.com/company/ecelljmi",
+          href: "https://www.linkedin.com/company/ecelljmi/home/",
           type: "link",
           icon: <LinkedInIcon className="w-4 h-4 text-white/80 shrink-0" />,
         },
         {
           name: "Instagram Official",
-          emailOrHandle: "@ecell_jmi",
-          href: "https://instagram.com/ecell_jmi",
+          emailOrHandle: "@ecelljmi",
+          href: "https://instagram.com/ecelljmi",
           type: "link",
           icon: <InstagramIcon className="w-4 h-4 text-white/80 shrink-0" />,
         },

@@ -28,12 +28,12 @@ const leadershipData: LeaderData[] = [
   },
   {
     id: "faiz-khan",
-    index: "02",
+    index: "02", 
     slug: "faiz-khan",
     role: "Co-Chair",
     roleCategory: "Leadership",
     name: "Faiz Khan",
-    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792340518/faiz.png",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/c_crop,g_north_west,h_400,w_500,x_165,y_260/faiz.png",
     batch: "Founder Council & Executive Board",
     faculty: "Faculty of Engineering & Technology",
     quote:
@@ -53,7 +53,7 @@ const leadershipData: LeaderData[] = [
     role: "Co-Chair",
     roleCategory: "Leadership",
     name: "Hiba Jamal",
-    avatar: "",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792489901/IMG_4521.jpg",
     batch: "Founder Council & Executive Board",
     faculty: "Faculty of Engineering, CIE",
     quote:
@@ -73,7 +73,7 @@ const leadershipData: LeaderData[] = [
     role: "General Secretary",
     roleCategory: "Secretary",
     name: "Mohammad Arham",
-    avatar: "",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792507397/e60996f7-dd34-4fc8-9def-a29fe2e5557e.png",
     batch: "Founder Council & Executive Board",
     faculty: "Faculty of Social Sciences",
     quote:
@@ -93,7 +93,7 @@ const leadershipData: LeaderData[] = [
     role: "Joint Secretary",
     roleCategory: "Secretary",
     name: "Mariyam",
-    avatar: "",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792507339/b458588d-d971-49f0-8946-9c2315549481.png",
     batch: "Founder Council & Executive Board",
     faculty: "Faculty of Social Sciences",
     quote:
@@ -113,7 +113,7 @@ const leadershipData: LeaderData[] = [
     role: "HR Secretary",
     roleCategory: "Secretary",
     name: "Mohd Imam Ashraf",
-    avatar: "",
+    avatar: "https://res.cloudinary.com/dm3eahafo/image/upload/v1792490075/4fa224aa-6ad4-43cd-83fd-d8f0bf473053.png",
     batch: "Founder Council & Executive Board",
     faculty: "Department of Commerce and Business Studies",
     quote:
