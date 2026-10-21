@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { revalidatePath } from "next/cache";
+import { normalizeGoogleDriveUrl } from "@/lib/utils";
 
 export interface MemberData {
   id?: string;
@@ -63,7 +64,7 @@ export async function createMember(data: {
         role: data.role?.trim() || "Core Team Member",
         batch: data.batch.trim(),
         faculty: data.faculty.trim(),
-        Avatar: data.Avatar.trim() || "/placeholder-avatar.png",
+        Avatar: normalizeGoogleDriveUrl(data.Avatar.trim()) || "/placeholder-avatar.png",
         linkedin: data.linkedin.trim(),
         github: data.github?.trim() || null,
         email: data.email?.trim() || null,

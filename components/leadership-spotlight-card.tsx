@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { Mail } from "lucide-react";
 import { LinkedInIcon, TwitterXIcon } from "@/components/icons";
+import { normalizeGoogleDriveUrl } from "@/lib/utils";
 
 export interface LeaderData {
   id: string;
@@ -32,7 +33,7 @@ export function LeadershipSpotlightCard({ leader }: { leader: LeaderData }) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  const avatarUrl = (leader.avatar || leader.Avatar || leader.image)?.trim();
+  const avatarUrl = normalizeGoogleDriveUrl((leader.avatar || leader.Avatar || leader.image)?.trim());
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;

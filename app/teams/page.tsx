@@ -24,7 +24,7 @@ const leadershipData: LeaderData[] = [
       linkedin: "https://www.linkedin.com/in/hamzaindia",
       twitter: "",
       email: "heyhamza22@gmail.com",
-    },
+    }, 
   },
   {
     id: "faiz-khan",

@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { Download, Loader2 } from "lucide-react";
 import { toPng } from "html-to-image";
+import { normalizeGoogleDriveUrl } from "@/lib/utils";
 
 interface HangingIdCardProps {
   member: {
@@ -14,6 +15,8 @@ interface HangingIdCardProps {
     faculty: string;
     batch: string;
     Avatar?: string;
+    avatar?: string;
+    image?: string;
   };
 }
 
@@ -22,6 +25,11 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [crossOriginMode, setCrossOriginMode] = useState<"anonymous" | undefined>("anonymous");
+  const [imageError, setImageError] = useState(false);
+
+  const rawAvatar = member.Avatar || member.avatar || member.image;
+  const avatarUrl = normalizeGoogleDriveUrl(rawAvatar);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || isDownloading) return;
@@ -51,7 +59,7 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
       const dataUrl = await toPng(cardRef.current, {
         pixelRatio: 2,
         backgroundColor: "transparent",
-        cacheBust: true,
+        cacheBust: crossOriginMode === "anonymous",
       });
 
       const link = document.createElement("a");
@@ -150,12 +158,21 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
 
             {/* Center Area: Large Avatar Container */}
             <div className="flex-1 p-4 sm:p-5 flex flex-col items-center justify-center">
-              {member.Avatar && member.Avatar.trim() !== "" ? (
+              {avatarUrl && !imageError ? (
                 <div className="w-full aspect-[4/4.5] rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
                   <img
-                    src={member.Avatar}
+                    key={`${avatarUrl}-${crossOriginMode}`}
+                    src={avatarUrl}
                     alt={member.name}
-                    crossOrigin="anonymous"
+                    crossOrigin={crossOriginMode}
+                    onError={() => {
+                      // If blocked by strict CORS header requirements, retry without CORS mode
+                      if (crossOriginMode === "anonymous") {
+                        setCrossOriginMode(undefined);
+                      } else {
+                        setImageError(true);
+                      }
+                    }}
                     className="w-full h-full object-cover"
                   />
                 </div>

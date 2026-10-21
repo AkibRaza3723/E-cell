@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { LinkedInIcon, GitHubIcon } from "@/components/icons";
 import { createMember, deleteMember, MemberData } from "@/lib/actions/members-actions";
+import { normalizeGoogleDriveUrl } from "@/lib/utils";
 
 interface MembersManagerProps {
   initialMembers: MemberData[];
@@ -102,7 +103,7 @@ export function MembersManager({ initialMembers }: MembersManagerProps) {
         batch,
         faculty,
         Avatar:
-          avatar.trim() ||
+          normalizeGoogleDriveUrl(avatar.trim()) ||
           `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=ea580c&color=fff`,
         linkedin,
         github,
@@ -257,7 +258,7 @@ export function MembersManager({ initialMembers }: MembersManagerProps) {
             >
               <div className="flex items-start gap-4">
                 <img
-                  src={member.Avatar}
+                  src={normalizeGoogleDriveUrl(member.Avatar)}
                   alt={member.name}
                   className="w-13 h-13 rounded-2xl object-cover bg-zinc-800 border border-white/10 shrink-0"
                   onError={(e) => {
