@@ -135,10 +135,10 @@ export function HangingIdCard({ member }: HangingIdCardProps) {
                 E-CELL JMI
               </span>
               <span className="px-1.5 py-0.5 rounded border border-zinc-300 bg-white text-[10px] font-mono font-bold text-zinc-700">
-                2025
+                2026
               </span>
             </div>
-          </div>
+          </div> 
 
           {/* MAIN BODY: Left Vertical Spine + Large Avatar Center */}
           <div className="flex flex-1">

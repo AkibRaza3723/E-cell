@@ -1,51 +1,23 @@
 import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BlogCard } from "@/components/blog-card";
+import { BlogsShowcase } from "@/components/blogs-showcase";
 import { getBlogs } from "@/lib/blogs-data";
-import { BookOpen, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "Blogs | E-Cell JMI",
+  title: "Blogs & Articles | E-Cell JMI",
   description:
     "Read inspiring stories, case studies, and entrepreneurial insights from student founders and innovators at E-Cell Jamia Millia Islamia.",
 };
 
-async function BlogsGrid() {
+async function BlogsSection() {
   const blogs = await getBlogs();
-
-  if (blogs.length === 0) {
-    return (
-      <div className="max-w-2xl mx-auto text-center py-20 px-6 sm:px-12 rounded-[2rem] bg-black/60 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-        <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-amber-300 mx-auto mb-6 shadow-inner">
-          <BookOpen className="w-8 h-8" />
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-heading font-black uppercase text-white tracking-tight mb-3">
-          No Publications Yet
-        </h2>
-        <p className="text-sm text-white/70 leading-relaxed max-w-md mx-auto mb-8 font-sans">
-          Founder stories, case studies, and entrepreneurial articles will be published here once authored through the Admin Portal.
-        </p>
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-xs font-mono text-amber-200">
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>E-Cell Editorial Desk &bull; Jamia Millia Islamia</span>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-      {blogs.map((blog) => (
-        <BlogCard key={blog.id} blog={blog} />
-      ))}
-    </div>
-  );
+  return <BlogsShowcase initialBlogs={blogs} />;
 }
 
 export default function BlogsPage() {
   return (
-    <div className="relative min-h-screen flex flex-col text-white selection:bg-orange-500 selection:text-white overflow-hidden">
+    <div className="relative min-h-screen flex flex-col text-white selection:bg-orange-500 selection:text-white overflow-hidden bg-[#070606]">
       {/* Master Vibrant Sunset Gradient Atmosphere (Exact site theme match) */}
       <div className="fixed inset-0 pointer-events-none nexora-bg-gradient z-0" />
 
@@ -85,36 +57,16 @@ export default function BlogsPage() {
 
       {/* Main Content */}
       <main className="relative z-10 flex-1 pt-28 sm:pt-36 pb-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Hero Header */}
-          <header className="text-center max-w-4xl mx-auto mb-14 sm:mb-18 select-none">
-            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange-100/90 font-mono drop-shadow-sm mb-3">
-              NEXT GEN ENTREPRENEURSHIP &bull; Blogs
-            </p>
-
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white tracking-tight leading-[0.94] font-heading drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-              OUR BLOGS
-            </h1>
-            <p className="text-lg sm:text-2xl font-extrabold uppercase text-amber-200 tracking-tight leading-tight font-heading drop-shadow-[0_4px_25px_rgba(0,0,0,0.4)] mt-3">
-              INSIGHTS, STORIES & FOUNDER JOURNEYS
-            </p>
-            <p className="text-sm sm:text-base text-white/75 font-sans max-w-2xl mx-auto mt-4 leading-relaxed">
-              Explore perspectives on student innovation, venture creation, and startup ecosystems directly from Jamia Millia Islamia.
-            </p>
-          </header>
-
-          {/* Blogs Grid */}
-          <Suspense
-            fallback={
-              <div className="py-20 flex flex-col items-center justify-center gap-3">
-                <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
-                <span className="text-xs font-mono text-orange-200">Loading publications...</span>
-              </div>
-            }
-          >
-            <BlogsGrid />
-          </Suspense>
-        </div>
+        <Suspense
+          fallback={
+            <div className="py-20 flex flex-col items-center justify-center gap-3">
+              <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
+              <span className="text-xs font-mono text-orange-200">Loading publications...</span>
+            </div>
+          }
+        >
+          <BlogsSection />
+        </Suspense>
       </main>
 
       {/* Footer */}

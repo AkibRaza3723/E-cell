@@ -7,7 +7,7 @@ import { ArrowRight, ArrowUpRight, Sparkles, Zap, Shield, Rocket } from "lucide-
 export function Hero() {
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden nexora-bg-gradient pt-24 sm:pt-28 pb-4 sm:pb-6 flex flex-col justify-between">
-      
+
       {/* Outer Enormous Glowing Orbital Ring Arc */}
       <div className="pointer-events-none absolute -top-[280px] -left-[200px] sm:-left-[350px] w-[950px] h-[950px] sm:w-[1350px] sm:h-[1350px] rounded-full orbital-ring-outer opacity-75" />
 
@@ -59,9 +59,9 @@ export function Hero() {
           </h2>
         </div>
 
-     
+
         <div className="relative flex-1 min-h-[300px] sm:min-h-[360px] lg:min-h-[400px] flex items-center justify-center my-2 sm:my-3">
-          
+
           {/* FLOATING 3D E-CELL EMBLEM WITH SYNCHRONIZED SHADOW & ANIMATION */}
           <div className="relative z-10 w-full max-w-[360px] sm:max-w-[460px] lg:max-w-[520px] mx-auto flex flex-col items-center justify-center">
             {/* Ambient Dual-Tone Backlight Glow (Cyan Left / Orange Right) */}
@@ -157,7 +157,7 @@ export function Hero() {
 
         </div>
         <div className="relative z-30 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 pt-2 pb-3">
-          
+
           {/* BOTTOM LEFT: EXPLORE COHORTS CARD (Matching "EXPLORE NEW WORLDS" Card in Reference) */}
           <div className="w-full sm:w-auto bg-white/95 text-zinc-950 rounded-2xl p-3 sm:p-3.5 shadow-[0_15px_35px_rgba(0,0,0,0.35)] backdrop-blur-md flex items-center gap-3.5 max-w-[340px] border border-white/40 transform -translate-y-[90%] md:-translate-x-[-25%] transition-transform duration-300">
             <div className="relative w-20 h-16 rounded-xl overflow-hidden bg-black shrink-0">

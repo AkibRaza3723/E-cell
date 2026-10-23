@@ -24,11 +24,11 @@ const leadershipData: LeaderData[] = [
       linkedin: "https://www.linkedin.com/in/hamzaindia",
       twitter: "",
       email: "heyhamza22@gmail.com",
-    }, 
+    },
   },
   {
     id: "faiz-khan",
-    index: "02", 
+    index: "02",
     slug: "faiz-khan",
     role: "Co-Chair",
     roleCategory: "Leadership",
@@ -124,7 +124,7 @@ const leadershipData: LeaderData[] = [
       linkedin: "https://www.linkedin.com/in/imam-ashraf-219664384",
       twitter: "",
       email: "imamashraf.88888@gmail.com",
-    }, 
+    },
   },
 ];
 
@@ -178,7 +178,7 @@ export default function Teams() {
       {/* Main Content */}
       <main className="relative z-10 flex-1 pt-28 sm:pt-36 pb-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Hero Section matching reference typography */}
           <header className="text-center max-w-4xl mx-auto mb-16 sm:mb-20 select-none">
             <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange-100/90 font-mono drop-shadow-sm mb-3">

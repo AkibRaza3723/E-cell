@@ -16,7 +16,7 @@ async function StartupsSection() {
       startups = await prisma.startup.findMany({
         where: { published: true },
         orderBy: { createdAt: "desc" },
-      });
+      }); 
     }
   } catch (error) {
     console.error("Failed to query startups from database:", error);
