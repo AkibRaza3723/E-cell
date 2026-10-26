@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BlogsShowcase } from "@/components/blogs-showcase";
+import { BlogsSkeleton } from "@/components/blogs-skeleton";
 import { getBlogs } from "@/lib/blogs-data";
 
 export const metadata = {
@@ -57,14 +58,7 @@ export default function BlogsPage() {
 
       {/* Main Content */}
       <main className="relative z-10 flex-1 pt-28 sm:pt-36 pb-24">
-        <Suspense
-          fallback={
-            <div className="py-20 flex flex-col items-center justify-center gap-3">
-              <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
-              <span className="text-xs font-mono text-orange-200">Loading publications...</span>
-            </div>
-          }
-        >
+        <Suspense fallback={<BlogsSkeleton />}>
           <BlogsSection />
         </Suspense>
       </main>

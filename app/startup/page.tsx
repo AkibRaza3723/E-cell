@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { StartupShowcase, DbStartup } from "@/components/startup-showcase";
+import { StartupSkeleton } from "@/components/startup-skeleton";
 import { prisma } from "@/lib/db";
 
 export const metadata = {
@@ -64,14 +65,7 @@ export default function StartupPage() {
 
       <Header />
       <main className="relative z-10 flex-1 pt-28 sm:pt-36 pb-24">
-        <Suspense
-          fallback={
-            <div className="py-20 flex flex-col items-center justify-center gap-3">
-              <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
-              <span className="text-xs font-mono text-orange-200">Loading student ventures...</span>
-            </div>
-          }
-        >
+        <Suspense fallback={<StartupSkeleton />}>
           <StartupsSection />
         </Suspense>
       </main>

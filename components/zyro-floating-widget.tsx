@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sparkles, ArrowUpRight } from "lucide-react";
+import { Mascot } from "page-mascot";
 
 function ZyroFloatingButtonInner() {
   const pathname = usePathname();
@@ -16,14 +17,23 @@ function ZyroFloatingButtonInner() {
   return (
     <aside
       aria-label="Zyro AI Startup Advisor"
-      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-3 select-none"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none"
     >
-      {/* Desktop Quick Greeting Tooltip */}
+      {/* Mascot just above Zyro button with reduced gap */}
+      <div className="-mb-6 sm:-mb-3 mr-1 sm:mr-2 drop-shadow-md">
+        <Mascot
+          directions="/mascots/toaster-directions.webp"
+          reactions="/mascots/toaster-reactions.webp"
+          size={120}
+          label="Toaster mascot"
+        />
+      </div>
+
+      <div className="flex items-center gap-4">
       <Link
         href="/zyro"
         className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#121216]/90 hover:bg-[#181820] border border-orange-500/30 hover:border-orange-500/60 text-white shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-200 group"
       >
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
         <span className="text-xs font-sans text-zinc-300 group-hover:text-white">
           Startup questions? <strong className="text-orange-400 font-semibold">Ask Zyro</strong>
         </span>
@@ -38,7 +48,6 @@ function ZyroFloatingButtonInner() {
       >
         <div className="relative">
           <Sparkles className="w-5 h-5 text-white animate-pulse" />
-          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-[#0c0c0e]" />
         </div>
         
         <div className="flex flex-col text-left leading-none">
@@ -50,6 +59,7 @@ function ZyroFloatingButtonInner() {
           </span>
         </div>
       </Link>
+      </div>
     </aside>
   );
 }
